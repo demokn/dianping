@@ -16,8 +16,8 @@ class SessionClient extends Client
     public function refresh($refreshSession)
     {
         return $this->httpPost('router/oauth/token', [
-            'app_key' => $this->app['config']['app_key'],
-            'app_secret' => $this->app['config']['app_secret'],
+            'app_key' => $this->app->config->get('app_key'),
+            'app_secret' => $this->app->config->get('app_secret'),
             'grant_type' => 'refresh_token',
             'refresh_token' => $refreshSession,
         ], false);

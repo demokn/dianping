@@ -14,7 +14,7 @@ class Client extends \Demokn\Dianping\Client
     public function getMerchantAuthUrl($redirectUrl, $state)
     {
         $queries = [
-            'app_key' => $this->app['config']['app_key'],
+            'app_key' => $this->app->config->get('app_key'),
             'redirect_url' => $redirectUrl,
             'state' => $state,
         ];
@@ -33,8 +33,8 @@ class Client extends \Demokn\Dianping\Client
     public function code2Session($redirectUrl = null, $code = null)
     {
         return $this->httpPost('router/oauth/token', [
-            'app_key' => $this->app['config']['app_key'],
-            'app_secret' => $this->app['config']['app_secret'],
+            'app_key' => $this->app->config->get('app_key'),
+            'app_secret' => $this->app->config->get('app_secret'),
             'auth_code' => $code ?: $this->getCode(),
             'grant_type' => 'authorization_code',
             'redirect_url' => $redirectUrl,

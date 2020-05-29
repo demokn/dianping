@@ -44,9 +44,9 @@ class Client
 
         // 使用MD5/HMAC加密
         if (isset($params['sign_method']) && $params['sign_method'] == 'HMAC') {
-            $sign = hash_hmac('MD5', $query, $this->app['config']['app_secret']);
+            $sign = hash_hmac('MD5', $query, $this->app->config->get('app_secret'));
         } else {
-            $sign = md5($this->app['config']['app_secret'].$query.$this->app['config']['app_secret']);
+            $sign = md5($this->app->config->get('app_secret').$query.$this->app->config->get('app_secret'));
         }
 
         // 把二进制转化为小写的十六进制
@@ -113,7 +113,7 @@ class Client
     protected function getCommonParams()
     {
         return [
-            'app_key' => $this->app['config']['app_key'],
+            'app_key' => $this->app->config->get('app_key'),
             'timestamp' => $this->getTimestamp(),
             'format' => 'json',
             'v' => 1,
