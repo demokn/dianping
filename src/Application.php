@@ -24,4 +24,3 @@ class Application extends ServiceContainer
         Ugc\ServiceProvider::class,
     ];
 }
-

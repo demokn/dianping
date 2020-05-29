@@ -9,17 +9,16 @@ class SessionClient extends Client
     /**
      * session刷新.
      * @link https://open.dianping.com/document/v2?docId=6000342&rootDocId=5000
-     * @param $refreshSession
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function refresh($refreshSession)
+    public function refresh(string $refreshToken)
     {
         return $this->httpPost('router/oauth/token', [
             'app_key' => $this->app->config->get('app_key'),
             'app_secret' => $this->app->config->get('app_secret'),
             'grant_type' => 'refresh_token',
-            'refresh_token' => $refreshSession,
+            'refresh_token' => $refreshToken,
         ], false);
     }
 
@@ -30,7 +29,7 @@ class SessionClient extends Client
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function query($session)
+    public function query(string $session)
     {
         return $this->httpGet('router/oauth/session/query', [
             'session' => $session,
@@ -45,7 +44,7 @@ class SessionClient extends Client
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function scope($session, $bid)
+    public function scope(string $session, string $bid)
     {
         return $this->httpGet('router/oauth/session/scope', [
             'session' => $session,

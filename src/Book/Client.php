@@ -5,11 +5,10 @@ namespace Demokn\Dianping\Book;
 class Client extends \Demokn\Dianping\Client
 {
     /**
-     * 用户到店核销接口
+     * 用户到店核销接口.
      * @link http://open.dianping.com/document/v2?docId=6000203&rootDocId=1000
-     * @param array $payload
-     * @return array|\Psr\Http\Message\ResponseInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return array|\Psr\Http\Message\ResponseInterface
      */
     public function isvConsume(array $payload)
     {
