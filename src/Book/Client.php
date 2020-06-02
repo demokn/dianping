@@ -10,8 +10,12 @@ class Client extends \Demokn\Dianping\Client
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function isvConsume(array $payload)
+    public function isvConsume(string $orderId, string $openShopUuid, string $session)
     {
-        return $this->httpPost('router/book/isvconsume', $payload);
+        return $this->httpPost('router/book/isvconsume', [
+            'order_id' => $orderId,
+            'open_shop_uuid' => $openShopUuid,
+            'session' => $session,
+        ]);
     }
 }

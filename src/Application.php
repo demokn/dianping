@@ -22,5 +22,6 @@ class Application extends ServiceContainer
         Poi\ServiceProvider::class,
         MerchantData\ServiceProvider::class,
         Ugc\ServiceProvider::class,
+        Book\ServiceProvider::class,
     ];
 }
