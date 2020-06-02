@@ -14,6 +14,7 @@ use Demokn\Dianping\Core\ServiceContainer;
  * @property \Demokn\Dianping\MerchantData\Client $merchant_data
  * @property \Demokn\Dianping\Ugc\Client $ugc
  * @property \Demokn\Dianping\Book\Client $book
+ * @property \Demokn\Dianping\Tuangou\Client $tuangou
  */
 class Application extends ServiceContainer
 {
@@ -23,5 +24,6 @@ class Application extends ServiceContainer
         MerchantData\ServiceProvider::class,
         Ugc\ServiceProvider::class,
         Book\ServiceProvider::class,
+        Tuangou\ServiceProvider::class,
     ];
 }
