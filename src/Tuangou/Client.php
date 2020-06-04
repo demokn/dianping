@@ -10,11 +10,12 @@ class Client extends \Demokn\Dianping\Client
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function prepareReceipt(string $receiptCode, string $openShopUuid)
+    public function prepareReceipt(string $receiptCode, string $openShopUuid, string $session)
     {
         return $this->httpPost('router/tuangou/receipt/prepare', [
             'receipt_code' => $receiptCode,
             'open_shop_uuid' => $openShopUuid,
+            'session' => $session,
         ]);
     }
 
@@ -24,13 +25,14 @@ class Client extends \Demokn\Dianping\Client
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function consumeReceipt(string $requestId, string $receiptCode, int $count, string $openShopUuid, string $appShopAccount, string $appShopAccountName)
+    public function consumeReceipt(string $requestId, string $receiptCode, int $count, string $openShopUuid, string $session, string $appShopAccount, string $appShopAccountName)
     {
         return $this->httpPost('router/tuangou/receipt/prepare', [
             'requestid' => $requestId,
             'receipt_code' => $receiptCode,
             'count' => $count,
             'open_shop_uuid' => $openShopUuid,
+            'session' => $session,
             'app_shop_account' => $appShopAccount,
             'app_shop_accountname' => $appShopAccountName,
         ]);
@@ -42,11 +44,12 @@ class Client extends \Demokn\Dianping\Client
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function getConsumedReceipt(string $receiptCode, string $openShopUuid)
+    public function getConsumedReceipt(string $receiptCode, string $openShopUuid, string $session)
     {
         return $this->httpGet('router/tuangou/receipt/getconsumed', [
             'receipt_code' => $receiptCode,
             'open_shop_uuid' => $openShopUuid,
+            'session' => $session,
         ]);
     }
 
@@ -57,10 +60,11 @@ class Client extends \Demokn\Dianping\Client
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function queryReceiptListByDate(string $openShopUuid, string $date, int $offset, int $limit, int $type = null, int $bizType = null)
+    public function queryReceiptListByDate(string $openShopUuid, string $session, string $date, int $offset, int $limit, int $type = null, int $bizType = null)
     {
         $payload = [
             'open_shop_uuid' => $openShopUuid,
+            'session' => $session,
             'date' => $date,
             'offset' => $offset,
             'limit' => $limit,
@@ -82,12 +86,13 @@ class Client extends \Demokn\Dianping\Client
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function reverseConsumeReceipt(string $receiptCode, string $openShopUuid, string $appDealId, string $appShopAccount, string $appShopAccountName)
+    public function reverseConsumeReceipt(string $receiptCode, string $openShopUuid, string $session, string $appDealId, string $appShopAccount, string $appShopAccountName)
     {
         return $this->httpPost('router/tuangou/receipt/reverseconsume', [
             'app_deal_id' => $appDealId,
             'receipt_code' => $receiptCode,
             'open_shop_uuid' => $openShopUuid,
+            'session' => $session,
             'app_shop_account' => $appShopAccount,
             'app_shop_accountname' => $appShopAccountName,
         ]);
@@ -99,11 +104,12 @@ class Client extends \Demokn\Dianping\Client
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function scanPrepareReceipt(string $qrCode, string $openShopUuid)
+    public function scanPrepareReceipt(string $qrCode, string $openShopUuid, string $session)
     {
         return $this->httpPost('router/tuangou/receipt/scanprepare', [
             'qr_code' => $qrCode,
             'open_shop_uuid' => $openShopUuid,
+            'session' => $session,
         ]);
     }
 
@@ -113,10 +119,11 @@ class Client extends \Demokn\Dianping\Client
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function queryShopDeal(string $openShopUuid, int $offset = 1, int $limit = 100)
+    public function queryShopDeal(string $openShopUuid, string $session, int $offset = 1, int $limit = 100)
     {
         return $this->httpGet('tuangou/deal/queryshopdeal', [
             'open_shop_uuid' => $openShopUuid,
+            'session' => $session,
             'offset' => $offset,
             'limit' => $limit,
         ]);
@@ -128,11 +135,12 @@ class Client extends \Demokn\Dianping\Client
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @return array|\Psr\Http\Message\ResponseInterface
      */
-    public function batchConsumeReceipt(string $requestId, array $receiptCodeInfos, string $openShopUuid, string $appShopAccount, string $appShopAccountName)
+    public function batchConsumeReceipt(string $requestId, array $receiptCodeInfos, string $openShopUuid, string $session, string $appShopAccount, string $appShopAccountName)
     {
         return $this->httpPost('router/tuangou/receipt/batchconsume', [
             'requestid' => $requestId,
             'open_shop_uuid' => $openShopUuid,
+            'session' => $session,
             'app_shop_account' => $appShopAccount,
             'app_shop_accountname' => $appShopAccountName,
             'receipt_code_infos' => $receiptCodeInfos,
