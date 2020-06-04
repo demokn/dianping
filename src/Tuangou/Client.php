@@ -27,7 +27,7 @@ class Client extends \Demokn\Dianping\Client
      */
     public function consumeReceipt(string $requestId, string $receiptCode, int $count, string $openShopUuid, string $session, string $appShopAccount, string $appShopAccountName)
     {
-        return $this->httpPost('router/tuangou/receipt/prepare', [
+        return $this->httpPost('router/tuangou/receipt/consume', [
             'requestid' => $requestId,
             'receipt_code' => $receiptCode,
             'count' => $count,
