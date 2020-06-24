@@ -33,7 +33,7 @@ class Client extends \Demokn\Dianping\Client
             'app_secret' => $this->app->config->get('app_secret'),
             'auth_code' => $authCode ?: $this->getAuthCode(),
             'grant_type' => 'authorization_code',
-            'redirect_url' => $originalRedirectUrl ?: $this->getCurrentUrl(),
+            'redirect_url' => $originalRedirectUrl ?: $this->getRequestUri(),
         ], false);
     }
 
@@ -42,8 +42,14 @@ class Client extends \Demokn\Dianping\Client
         return $this->app->request->get('auth_code');
     }
 
-    protected function getCurrentUrl()
+    protected function getRequestUri()
     {
-        return $this->app->request->getSchemeAndHttpHost().$this->app->request->getPathInfo();
+        $query = $this->app->request->query->all();
+        unset($query['auth_code']);
+        unset($query['state']);
+
+        return $this->app->request->getSchemeAndHttpHost()
+            .$this->app->request->getPathInfo()
+            .'?'.http_build_query($query);
     }
 }
